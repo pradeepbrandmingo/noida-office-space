@@ -72,7 +72,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="hero-section relative w-full overflow-hidden bg-[var(--primary)] min-h-[540px] lg:min-h-[600px] flex items-center py-6 sm:py-8 lg:py-10">
+    <section className="hero-section relative w-full overflow-hidden bg-[var(--primary)] min-h-[500px] lg:min-h-[550px] flex items-center py-5 sm:py-6 lg:py-7">
       {/* Background Hero Banner Image with Executive Deep Navy Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -80,14 +80,14 @@ export default function HeroSection() {
           alt="Luxury Office Spaces in Noida"
           className="w-full h-full object-cover object-center"
         />
-        {/* Deep Navy Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/90 via-[var(--primary)]/75 to-[var(--primary)]/95 lg:bg-gradient-to-r lg:from-[var(--primary)]/95 lg:via-[var(--primary)]/80 lg:to-transparent" />
+        {/* Balanced luxury blue gradient overlay: enhanced on mobile for text legibility, subtle on desktop */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/65 via-[var(--primary)]/50 to-[var(--primary)]/65 sm:from-[var(--primary)]/55 sm:via-[var(--primary)]/35 sm:to-[var(--primary)]/55 lg:bg-gradient-to-r lg:from-[var(--primary)]/50 lg:via-[var(--primary)]/15 lg:to-transparent" />
       </div>
 
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6">
           {/* Left Column: Hero Content & Highlights (Compact & Elegant) */}
-          <div className="w-full lg:w-[63%] xl:w-[65%] space-y-4 sm:space-y-5 text-left">
+          <div className="w-full lg:w-[60%] xl:w-[62%] space-y-3.5 sm:space-y-4 text-left">
             {/* Eyebrow - Subtle slate/grayish white matching reference UI */}
             <div className="inline-flex items-center gap-2">
               <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[var(--text-light-muted)]">
@@ -95,55 +95,59 @@ export default function HeroSection() {
               </span>
             </div>
 
-            {/* Main Title (H1) - Strict Pure Crisp White with Gold Noida and Balanced font-bold */}
-            <h1 className="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] xl:text-[2.9rem] font-bold !text-[var(--text-white)] tracking-tight leading-[1.14]">
+            {/* Main Title (H1) - 100% Global Typography (.hero-title in globals.css) */}
+            <h1 className="hero-title drop-shadow-sm">
               Find the Perfect <br className="hidden sm:inline" />
               Office Space <br className="hidden sm:inline" />
               in <span className="text-[var(--gold)]">Noida</span>
             </h1>
 
-            {/* Subtitle Description - Pure Crisp Off-White (!text-[var(--text-light)]) */}
-            <p className="hero-subtitle text-xs sm:text-sm md:text-[14.5px] !text-[var(--text-light)] leading-relaxed max-w-lg font-normal">
-              Modern workspaces for ambitious businesses. From startups to
-              enterprises — we help you find the right space to grow.
+            {/* Subtitle Description - 3 clean lines matching user requirement & reference UI */}
+            <p className="hero-subtitle text-xs sm:text-sm md:text-[14px] !text-[var(--text-light)] leading-relaxed max-w-lg font-normal drop-shadow-sm">
+              Modern workspaces for ambitious businesses. <br />
+              From startups to enterprises — we help you <br />
+              find the right space to grow.
             </p>
 
-            {/* 4 Feature Badges (Matching Reference UI: Sleek Icon Box + 2-line Text) */}
-            <div className="grid grid-cols-2 sm:flex sm:items-center sm:gap-7 lg:gap-8 pt-1">
+            {/* 4 Feature Badges (Matching Reference UI: Centered Squircle Icon Box + 2-line Text) */}
+            <div className="grid grid-cols-4 gap-2.5 sm:flex sm:items-center sm:gap-6 lg:gap-7 pt-0.5">
               {badges.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col items-start gap-1.5 p-2 sm:p-0 rounded-xl sm:rounded-none bg-white/[0.04] sm:bg-transparent border border-white/10 sm:border-0 group cursor-default transition-transform hover:-translate-y-0.5"
+                  className="flex flex-col items-center text-center group cursor-default"
                 >
-                  <div className="w-9 h-9 rounded-xl border border-white/15 bg-white/[0.06] backdrop-blur-sm flex items-center justify-center text-[var(--gold)] group-hover:border-[var(--gold)] group-hover:bg-[var(--gold)] group-hover:text-[var(--text-white)] transition-all duration-300 shadow-xs">
-                    <i className={`${item.icon} text-sm`} aria-hidden="true" />
+                  <div className="w-[50px] h-[50px] sm:w-[58px] sm:h-[58px] lg:w-[62px] lg:h-[62px] rounded-2xl border border-white/25 bg-white/[0.02] backdrop-blur-[1.5px] flex items-center justify-center text-[var(--gold-bright)] group-hover:border-[var(--gold-bright)] group-hover:bg-white/[0.08] group-hover:scale-105 transition-all duration-300 shadow-sm">
+                    <i
+                      className={`${item.icon} text-[22px] sm:text-[26px] lg:text-[28px] text-[var(--gold-bright)] drop-shadow-sm`}
+                      aria-hidden="true"
+                    />
                   </div>
-                  <div className="text-[11.5px] font-semibold text-[var(--text-white)] leading-tight mt-0.5">
+                  <div className="text-[11px] sm:text-[12px] font-semibold text-[var(--text-white)] leading-tight mt-2">
                     <div>{item.line1}</div>
-                    <div className="text-[var(--text-light-muted)] font-normal">{item.line2}</div>
+                    <div>{item.line2}</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* CTA Button (Matching Reference UI with Navy Text on Gold) */}
-            <div className="pt-2">
+            {/* CTA Button (Global Gold Button matching reference UI) */}
+            <div className="pt-1.5">
               <Link
                 href="/offices"
-                className="inline-flex items-center gap-2.5 bg-[var(--gold)] hover:bg-[var(--gold-hover)] text-[var(--primary)] font-bold text-xs sm:text-[13.5px] px-6 py-2.5 sm:py-3 rounded-xl shadow-[0_4px_16px_rgba(157,116,72,0.3)] hover:shadow-[0_6px_20px_rgba(157,116,72,0.4)] hover:-translate-y-0.5 active:scale-95 transition-all duration-300 group cursor-pointer"
+                className="btn btn-gold px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-[13.5px] tracking-wide"
               >
                 <span>Explore Office Spaces</span>
                 <i
-                  className="fa-solid fa-arrow-right text-[11px] transition-transform duration-200 group-hover:translate-x-1"
+                  className="fa-solid fa-arrow-right text-[11.5px]"
                   aria-hidden="true"
                 />
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Floating Requirement Form Card (Compact Left-to-Right max-w-[350px]) */}
-          <div className="w-full lg:w-[35%] xl:w-[33%] max-w-[350px] mx-auto lg:mx-0">
-            <div className="bg-[var(--bg-surface)] rounded-2xl p-4 sm:p-5 shadow-[0_12px_36px_-6px_rgba(10,35,60,0.18),0_4px_12px_-2px_rgba(10,35,60,0.06)] border border-[var(--border-card)]">
+          {/* Right Column: Floating Requirement Form Card (Expanded to max-w-[380px] & shifted slightly left) */}
+          <div className="w-full lg:w-[40%] xl:w-[38%] flex justify-center lg:justify-end lg:pr-3 xl:pr-6">
+            <div className="form-card w-full max-w-[380px] bg-[var(--bg-surface)] rounded-2xl p-4.5 sm:p-5 shadow-[0_12px_36px_-6px_rgba(10,35,60,0.18),0_4px_12px_-2px_rgba(10,35,60,0.06)] border border-[var(--border-card)]">
               {/* Form Header (H4 size matching reference UI) */}
               <div className="mb-3">
                 <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-[0.16em] text-[var(--gold)] block">
@@ -152,7 +156,7 @@ export default function HeroSection() {
                 <h4 className="text-base sm:text-lg font-bold text-[var(--text-heading)] mt-0.5 leading-snug">
                   Share Your Requirements
                 </h4>
-                <p className="text-[11px] sm:text-xs text-[var(--text-body)] mt-0.5">
+                <p className="text-[11.5px] sm:text-xs !text-[var(--text-body)] mt-1 font-normal leading-relaxed">
                   Our team will get in touch with the best options for you.
                 </p>
               </div>
@@ -298,14 +302,14 @@ export default function HeroSection() {
                   </div>
                 )}
 
-                {/* Submit Button */}
+                {/* Submit Button (Global Blue Button with refined font size & weight) */}
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--text-white)] font-bold py-2.5 px-4 rounded-xl shadow-[0_4px_14px_rgba(10,35,60,0.25)] hover:shadow-[0_6px_18px_rgba(10,35,60,0.35)] hover:-translate-y-0.5 active:scale-98 transition-all duration-300 cursor-pointer text-xs sm:text-[13px] group"
+                  className="btn btn-blue w-full py-2.5 px-4 text-[12px] sm:text-[12.5px] font-medium sm:font-semibold tracking-normal group"
                 >
-                  <span>Get Office Space Options</span>
+                  <span className="text-[12px] sm:text-[12.5px] font-medium sm:font-semibold">Get Office Space Options</span>
                   <i
-                    className="fa-solid fa-arrow-right text-[10px] transition-transform duration-200 group-hover:translate-x-1"
+                    className="fa-solid fa-arrow-right text-[9.5px]"
                     aria-hidden="true"
                   />
                 </button>

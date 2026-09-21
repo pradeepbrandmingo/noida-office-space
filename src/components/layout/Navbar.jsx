@@ -63,7 +63,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center">
             <a
               href="tel:9999901196"
-              className="flex items-center gap-3.5 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--text-white)] px-5 sm:px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+              className="btn btn-blue px-5 sm:px-6 py-2.5 flex items-center gap-3.5"
             >
               {/* FontAwesome Phone Icon (Pure <i> tag, Absolutely NO SVG) */}
               <i className="fa-solid fa-phone text-[var(--text-white)] text-[15px] shrink-0" aria-hidden="true" />
@@ -128,7 +128,7 @@ export default function Navbar() {
             <div className="pt-3 px-2">
               <a
                 href="tel:9999901196"
-                className="w-full flex items-center justify-center gap-3 bg-[var(--primary)] text-[var(--text-white)] py-3.5 rounded-xl font-bold text-sm shadow-sm hover:bg-[var(--primary-hover)] transition-colors"
+                className="btn btn-blue w-full py-3 text-sm font-bold gap-3"
               >
                 {/* FontAwesome Phone Icon (Pure <i> tag, Absolutely NO SVG) */}
                 <i className="fa-solid fa-phone text-[var(--text-white)] text-[14px]" aria-hidden="true" />

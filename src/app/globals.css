@@ -17,6 +17,9 @@
   --gold-hover: #86613a;         /* Deep Rich Gold for hover */
   --gold-light: #faf5ef;         /* Soft Champagne Gold tint for backgrounds/badges */
   --gold-border: #ebd9c5;        /* Light golden border */
+  --gold-bright: #e5be83;        /* Luminous Champagne Gold for icons & highlights on dark surfaces */
+  --gold-gradient: linear-gradient(180deg, #e4c28d 0%, #cb9f64 60%, #b58849 100%); /* Metallic Champagne Gold */
+  --gold-gradient-hover: linear-gradient(180deg, #ecd1a0 0%, #d5aa72 60%, #bf9253 100%);
 
   /* --- Backgrounds --- */
   --bg-main: #fefefe;            /* Main Website Light Background (requested by user) */
@@ -51,9 +54,9 @@
   --shadow-blue: 0 10px 25px -5px rgba(10, 35, 60, 0.35);
 
   /* --- Typography Fluid Scales --- */
-  --h1-size: clamp(2.25rem, 4.5vw, 3.75rem);   /* 36px to 60px */
-  --h2-size: clamp(1.75rem, 3.2vw, 2.65rem);   /* 28px to 42px */
-  --h3-size: clamp(1.25rem, 2vw, 1.5rem);      /* 20px to 24px */
+  --h1-size: clamp(2rem, 3.8vw, 2.95rem);      /* 32px on mobile to ~47px on desktop */
+  --h2-size: clamp(1.6rem, 2.8vw, 2.35rem);     /* 25px to 37px */
+  --h3-size: clamp(1.2rem, 1.8vw, 1.5rem);      /* 19px to 24px */
   --h4-size: 1.125rem;                          /* 18px */
   --body-size: 1rem;                            /* 16px */
   --body-line-height: 1.68;
@@ -84,6 +87,7 @@
   --color-gold-hover: var(--gold-hover);
   --color-gold-light: var(--gold-light);
   --color-gold-border: var(--gold-border);
+  --color-gold-bright: var(--gold-bright);
 
   --color-bg-main: var(--bg-main);
   --color-bg-surface: var(--bg-surface);
@@ -141,13 +145,21 @@ h1, .h1 {
 
 .hero-title,
 section h1.hero-title {
+  font-size: var(--h1-size) !important;
   color: var(--text-white) !important;
+  font-weight: 600 !important;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
 }
 
-.hero-subtitle,
-.hero-section p,
-section.hero-section p {
+.hero-subtitle {
   color: var(--text-light) !important;
+}
+
+/* Form card inside Hero Section preserves executive dark colors on white background */
+.hero-section .form-card p,
+.form-card p {
+  color: var(--text-body) !important;
 }
 
 h2, .h2 {
@@ -321,32 +333,56 @@ footer h1, footer h2, footer h3, footer h4 {
   transform: translateX(3px);
 }
 
-/* Golden Button (Hero "Explore Office Spaces ->", About "Learn More About Us ->") */
-.btn-gold {
-  background-color: var(--gold);
-  color: var(--text-white) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 14px 0 rgba(157, 116, 72, 0.25);
+/* Golden Luxury Metallic Gradient Button (Hero "Explore Office Spaces ->", About "Learn More About Us ->", matching reference UI) */
+.btn-gold,
+.btn-gold-gradient {
+  background: var(--gold-gradient);
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 22px -3px rgba(181, 136, 73, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-button);
 }
 
-.btn-gold:hover {
-  background-color: var(--gold-hover);
-  box-shadow: var(--shadow-gold);
-  transform: translateY(-1px);
+.btn-gold span,
+.btn-gold i,
+.btn-gold-gradient span,
+.btn-gold-gradient i {
+  color: var(--primary) !important;
 }
 
-/* Navy Blue Button (Form "Get Office Space Options ->", Header "Call Now") */
-.btn-blue, .btn-primary {
+.btn-gold:hover,
+.btn-gold-gradient:hover {
+  background: var(--gold-gradient-hover);
+  box-shadow: 0 12px 28px -2px rgba(181, 136, 73, 0.52), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1.5px);
+  color: var(--primary) !important;
+}
+
+/* Executive Navy Blue Button (Navbar "Call Now", Form "Get Office Space Options ->") */
+.btn-blue,
+.btn-primary {
   background-color: var(--primary);
   color: var(--text-white) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 14px 0 rgba(10, 35, 60, 0.25);
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px 0 rgba(10, 35, 60, 0.28);
+  border-radius: var(--radius-button);
 }
 
-.btn-blue:hover, .btn-primary:hover {
+.btn-blue span,
+.btn-blue i,
+.btn-primary span,
+.btn-primary i {
+  color: var(--text-white) !important;
+}
+
+.btn-blue:hover,
+.btn-primary:hover {
   background-color: var(--primary-hover);
-  box-shadow: var(--shadow-blue);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 22px 0 rgba(10, 35, 60, 0.38);
+  transform: translateY(-1.5px);
+  color: var(--text-white) !important;
 }
 
 /* Outlined Buttons */
