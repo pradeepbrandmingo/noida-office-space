@@ -29,14 +29,28 @@ export default function Footer() {
     }
   };
 
+  const handleQuickLinkClick = (e, href) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      if (href === "#home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   const quickLinks = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Office Spaces", href: "/offices" },
-    { label: "By Sector", href: "/sectors" },
-    { label: "Why Choose Us", href: "/why-noida" },
-    { label: "Our Process", href: "/process" },
-    { label: "Contact Us", href: "/contact" },
+    { label: "Home", href: "#home" },
+    { label: "About Us", href: "#about" },
+    { label: "Office Spaces", href: "#space-categories" },
+    { label: "By Sector", href: "#office-spaces" },
+    { label: "Why Choose Us", href: "#why-choose-us" },
+    { label: "Our Process", href: "#featured-spaces" },
+    { label: "Contact Us", href: "#contact" },
   ];
 
   const officeSpaces = [
@@ -123,12 +137,13 @@ export default function Footer() {
               <ul className="space-y-2 text-[13px]">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
-                    <Link
+                    <a
                       href={link.href}
-                      className="text-[var(--text-light-muted)] hover:text-[var(--text-white)] hover:translate-x-1.5 transition-all duration-200 inline-block"
+                      onClick={(e) => handleQuickLinkClick(e, link.href)}
+                      className="text-[var(--text-light-muted)] hover:text-[var(--text-white)] hover:translate-x-1.5 transition-all duration-200 inline-block cursor-pointer"
                     >
                       {link.label}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

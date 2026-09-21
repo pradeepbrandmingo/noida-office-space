@@ -72,7 +72,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="hero-section relative w-full overflow-hidden bg-[var(--primary)] min-h-[500px] lg:min-h-[550px] flex items-center py-5 sm:py-6 lg:py-7">
+    <section id="home" className="hero-section relative w-full overflow-hidden bg-[var(--primary)] min-h-[500px] lg:min-h-[550px] flex items-center py-5 sm:py-6 lg:py-7">
       {/* Background Hero Banner Image with Executive Deep Navy Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -89,28 +89,28 @@ export default function HeroSection() {
           {/* Left Column: Hero Content & Highlights (Compact & Elegant) */}
           <div className="w-full lg:w-[60%] xl:w-[62%] space-y-3.5 sm:space-y-4 text-left">
             {/* Eyebrow - Subtle slate/grayish white matching reference UI */}
-            <div className="inline-flex items-center gap-2">
+            <div className="inline-flex items-center gap-2 animate-fade-down">
               <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.24em] uppercase text-[var(--text-light-muted)]">
                 PREMIUM &nbsp;|&nbsp; FLEXIBLE &nbsp;|&nbsp; STRATEGIC
               </span>
             </div>
 
             {/* Main Title (H1) - 100% Global Typography (.hero-title in globals.css) */}
-            <h1 className="hero-title drop-shadow-sm">
+            <h1 className="hero-title drop-shadow-sm animate-fade-up delay-100">
               Find the Perfect <br className="hidden sm:inline" />
               Office Space <br className="hidden sm:inline" />
               in <span className="text-[var(--gold)]">Noida</span>
             </h1>
 
             {/* Subtitle Description - 3 clean lines matching user requirement & reference UI */}
-            <p className="hero-subtitle text-xs sm:text-sm md:text-[14px] !text-[var(--text-light)] leading-relaxed max-w-lg font-normal drop-shadow-sm">
+            <p className="hero-subtitle text-xs sm:text-sm md:text-[14px] !text-[var(--text-light)] leading-relaxed max-w-lg font-normal drop-shadow-sm animate-fade-up delay-200">
               Modern workspaces for ambitious businesses. <br />
               From startups to enterprises — we help you <br />
               find the right space to grow.
             </p>
 
             {/* 4 Feature Badges (Matching Reference UI: Centered Squircle Icon Box + 2-line Text) */}
-            <div className="grid grid-cols-4 gap-2.5 sm:flex sm:items-center sm:gap-6 lg:gap-7 pt-0.5">
+            <div className="grid grid-cols-4 gap-2.5 sm:flex sm:items-center sm:gap-6 lg:gap-7 pt-0.5 animate-fade-up delay-300">
               {badges.map((item, idx) => (
                 <div
                   key={idx}
@@ -131,7 +131,7 @@ export default function HeroSection() {
             </div>
 
             {/* CTA Button (Global Gold Button matching reference UI) */}
-            <div className="pt-1.5">
+            <div className="pt-1.5 animate-fade-up delay-400">
               <Link
                 href="/offices"
                 className="btn btn-gold px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-[13.5px] tracking-wide"
@@ -146,7 +146,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right Column: Floating Requirement Form Card (Expanded to max-w-[380px] & shifted slightly left) */}
-          <div className="w-full lg:w-[40%] xl:w-[38%] flex justify-center lg:justify-end lg:pr-3 xl:pr-6">
+          <div className="w-full lg:w-[40%] xl:w-[38%] flex justify-center lg:justify-end lg:pr-3 xl:pr-6 animate-scale-in delay-200">
             <div className="form-card w-full max-w-[380px] bg-[var(--bg-surface)] rounded-2xl p-4.5 sm:p-5 shadow-[0_12px_36px_-6px_rgba(10,35,60,0.18),0_4px_12px_-2px_rgba(10,35,60,0.06)] border border-[var(--border-card)]">
               {/* Form Header (H4 size matching reference UI) */}
               <div className="mb-3">

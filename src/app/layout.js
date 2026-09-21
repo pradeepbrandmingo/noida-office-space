@@ -1,18 +1,23 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 /**
  * Centralized Global Font Configuration
- * Plus Jakarta Sans matches the clean, modern corporate typography of the reference UI.
- * If client asks to change font in future, simply change this Google Font import!
  */
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -30,7 +35,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} scroll-smooth`}>
+    <html lang="en" className={`${plusJakarta.variable} ${caveat.variable} scroll-smooth`}>
       <head>
         <link
           rel="stylesheet"
