@@ -1,26 +1,488 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   GLOBAL DESIGN TOKENS (Noida Office Space)
+   Central source of truth for the entire website.
+   Changing variables here updates every single page and component instantly.
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Brand Primary Colors --- */
+  --primary: #0a233c;            /* Executive Deep Blue / Navy */
+  --primary-hover: #07192b;      /* Darker Blue for hover states */
+  --primary-light: #e8eff6;      /* Subtle blue tint for badges & borders */
+
+  /* --- Brand Accent / Golden Colors --- */
+  --gold: #9d7448;               /* Warm Corporate Gold */
+  --gold-hover: #86613a;         /* Deep Rich Gold for hover */
+  --gold-light: #faf5ef;         /* Soft Champagne Gold tint for backgrounds/badges */
+  --gold-border: #ebd9c5;        /* Light golden border */
+
+  /* --- Backgrounds --- */
+  --bg-main: #fefefe;            /* Main Website Light Background (requested by user) */
+  --bg-surface: #ffffff;         /* Pure White for cards & forms */
+  --bg-subtle: #f8fafc;          /* Ultra soft grey for alternating sections */
+  --bg-dark: #07192b;            /* Dark footer & deep contrast surfaces */
+
+  /* --- Typography Colors (Light Backgrounds) --- */
+  --text-heading: #0a233c;       /* Executive Navy Headings on Light bg */
+  --text-body: #475569;          /* Slate Grey for high legibility on Light bg */
+  --text-muted: #64748b;         /* Captions, helper text on Light bg */
+  --text-gold: #9d7448;          /* Highlighted words & badges */
+
+  /* --- Typography Colors (Dark / Blue Backgrounds) --- */
+  --text-white: #ffffff;         /* 100% Pure White for headings/important elements */
+  --text-light: #f8fafc;         /* Bright, crisp white for body paragraphs on dark/blue surfaces */
+  --text-light-muted: #cbd5e1;   /* Clean light slate for links/secondary text on dark surfaces */
+
+  /* --- Footer Tokens (100% Global) --- */
+  --footer-bg: #07192b;          /* Dark Navy Corporate Footer */
+  --footer-border: #142a40;      /* Subtle dark border */
+  --footer-input: #0c2339;       /* Input box navy surface */
+  --footer-text: #f8fafc;        /* 100% Crisp bright white for footer body & paragraphs */
+  --footer-text-muted: #cbd5e1;  /* Clean light slate for footer links & subtext */
+
+  /* --- Borders & Shadows --- */
+  --border-subtle: #e6ebf1;      /* Crisp subtle border */
+  --border-card: #edf1f5;        /* Card boundary */
+  --shadow-sm: 0 2px 8px -2px rgba(10, 35, 60, 0.05);
+  --shadow-card: 0 10px 35px -5px rgba(10, 35, 60, 0.07), 0 2px 10px -2px rgba(10, 35, 60, 0.04);
+  --shadow-gold: 0 10px 25px -5px rgba(157, 116, 72, 0.35);
+  --shadow-blue: 0 10px 25px -5px rgba(10, 35, 60, 0.35);
+
+  /* --- Typography Fluid Scales --- */
+  --h1-size: clamp(2.25rem, 4.5vw, 3.75rem);   /* 36px to 60px */
+  --h2-size: clamp(1.75rem, 3.2vw, 2.65rem);   /* 28px to 42px */
+  --h3-size: clamp(1.25rem, 2vw, 1.5rem);      /* 20px to 24px */
+  --h4-size: 1.125rem;                          /* 18px */
+  --body-size: 1rem;                            /* 16px */
+  --body-line-height: 1.68;
+  --eyebrow-size: 0.75rem;                       /* 12px uppercase */
+
+  /* --- Section & Container Spacing --- */
+  --container-max-width: 80rem;                 /* 1280px */
+  --section-padding-y: clamp(4rem, 6vw, 6.5rem);/* 64px to 104px */
+  --section-padding-y-sm: clamp(2.5rem, 4vw, 4rem);
+
+  /* --- Global Border Radii --- */
+  --radius-button: 0.75rem;                     /* 12px */
+  --radius-card: 1.25rem;                       /* 20px */
+  --radius-input: 0.65rem;                      /* 10px */
+  --radius-badge: 9999px;                       /* Full pill */
+
+  /* --- Global Transition Timing --- */
+  --transition-smooth: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Tailwind v4 Theme Bindings */
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+
+  --color-gold: var(--gold);
+  --color-gold-hover: var(--gold-hover);
+  --color-gold-light: var(--gold-light);
+  --color-gold-border: var(--gold-border);
+
+  --color-bg-main: var(--bg-main);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-dark: var(--bg-dark);
+
+  --color-text-heading: var(--text-heading);
+  --color-text-body: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-text-gold: var(--text-gold);
+
+  --color-text-white: var(--text-white);
+  --color-text-light: var(--text-light);
+  --color-text-light-muted: var(--text-light-muted);
+
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-border: var(--footer-border);
+  --color-footer-input: var(--footer-input);
+  --color-footer-text: var(--footer-text);
+  --color-footer-text-muted: var(--footer-text-muted);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-card: var(--border-card);
+
+  --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base Body Styles */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  font-family: var(--font-sans), sans-serif;
+  line-height: var(--body-line-height);
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY HIERARCHY
+   Automatic styling for standard HTML tags + reusable classes
+   ========================================================================== */
+
+h1, .h1 {
+  font-size: var(--h1-size);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  color: var(--text-heading);
+}
+
+.hero-title,
+section h1.hero-title {
+  color: var(--text-white) !important;
+}
+
+.hero-subtitle,
+.hero-section p,
+section.hero-section p {
+  color: var(--text-light) !important;
+}
+
+h2, .h2 {
+  font-size: var(--h2-size);
+  font-weight: 750;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+}
+
+h3, .h3 {
+  font-size: var(--h3-size);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--text-heading);
+}
+
+h4, .h4 {
+  font-size: var(--h4-size);
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--text-heading);
+}
+
+p, .body-text {
+  font-size: var(--body-size);
+  color: var(--text-body);
+  line-height: var(--body-line-height);
+}
+
+/* ==========================================================================
+   DARK & BLUE BACKGROUND AUTOMATIC OVERRIDES
+   Ensures paragraphs & content on Blue / Dark backgrounds are crisp bright white,
+   never grayish or dull.
+   ========================================================================== */
+
+.bg-dark,
+.bg-primary,
+.bg-navy,
+[data-theme="dark"],
+footer {
+  color: var(--text-light);
+}
+
+.bg-dark p,
+.bg-primary p,
+.bg-navy p,
+[data-theme="dark"] p,
+footer p {
+  color: var(--text-light) !important;
+}
+
+.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4,
+.bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4,
+footer h1, footer h2, footer h3, footer h4 {
+  color: var(--text-white) !important;
+}
+
+/* Global Reusable Text Color Classes */
+.text-light {
+  color: var(--text-light) !important;
+}
+.text-light-muted {
+  color: var(--text-light-muted) !important;
+}
+.text-dark-heading {
+  color: var(--text-heading) !important;
+}
+.text-dark-body {
+  color: var(--text-body) !important;
+}
+.text-white {
+  color: var(--text-white) !important;
+}
+
+/* Golden Accent Highlighting */
+.text-gold, .golden-text {
+  color: var(--gold) !important;
+}
+
+/* Eyebrow Label (e.g. ABOUT US, EXPLORE BY LOCATION, GET STARTED) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--eyebrow-size);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow-line {
+  display: inline-block;
+  width: 2rem;
+  height: 2px;
+  background-color: var(--gold);
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   GLOBAL CONTAINER & SECTION SPACING
+   Guarantees 100% uniform spacing on mobile, tablet and desktop
+   ========================================================================== */
+
+.global-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .global-container {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .global-container {
+    padding-left: 2.25rem;
+    padding-right: 2.25rem;
+  }
+}
+
+/* Vertical Section Spacings */
+.section-padding {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+.section-padding-sm {
+  padding-top: var(--section-padding-y-sm);
+  padding-bottom: var(--section-padding-y-sm);
+}
+
+/* ==========================================================================
+   GLOBAL BUTTON STYLING
+   Exact match to user reference screenshots with fluid micro-interactions
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-weight: 600;
+  font-size: 0.935rem;
+  border-radius: var(--radius-button);
+  padding: 0.82rem 1.65rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn i {
+  transition: transform 0.25s ease;
+}
+
+.btn:hover i {
+  transform: translateX(3px);
+}
+
+/* Golden Button (Hero "Explore Office Spaces ->", About "Learn More About Us ->") */
+.btn-gold {
+  background-color: var(--gold);
+  color: var(--text-white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px 0 rgba(157, 116, 72, 0.25);
+}
+
+.btn-gold:hover {
+  background-color: var(--gold-hover);
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-1px);
+}
+
+/* Navy Blue Button (Form "Get Office Space Options ->", Header "Call Now") */
+.btn-blue, .btn-primary {
+  background-color: var(--primary);
+  color: var(--text-white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px 0 rgba(10, 35, 60, 0.25);
+}
+
+.btn-blue:hover, .btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-blue);
+  transform: translateY(-1px);
+}
+
+/* Outlined Buttons */
+.btn-outline-gold {
+  background-color: transparent;
+  color: var(--gold) !important;
+  border: 1.5px solid var(--gold);
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--gold);
+  color: var(--text-white) !important;
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-outline-blue {
+  background-color: transparent;
+  color: var(--primary) !important;
+  border: 1.5px solid var(--primary);
+}
+
+.btn-outline-blue:hover {
+  background-color: var(--primary);
+  color: var(--text-white) !important;
+  box-shadow: var(--shadow-blue);
+}
+
+/* ==========================================================================
+   GLOBAL FORM & INPUT STYLING (Requirements card match)
+   ========================================================================== */
+
+.input-luxury {
+  width: 100%;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-input);
+  padding: 0.78rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-heading);
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.input-luxury::placeholder {
+  color: var(--text-muted);
+}
+
+.input-luxury:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(157, 116, 72, 0.15);
+}
+
+/* Form Group with Icon */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon .input-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.input-with-icon input, 
+.input-with-icon select {
+  padding-left: 2.75rem;
+}
+
+/* ==========================================================================
+   GLOBAL CARDS & CONTAINERS
+   ========================================================================== */
+
+.card-luxury {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -8px rgba(10, 35, 60, 0.12);
+}
+
+/* Status / Category Badges */
+.badge-gold {
+  background-color: var(--gold-light);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-badge);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.badge-blue {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-badge);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ==========================================================================
+   GLOBAL ANIMATIONS & TRANSITIONS (Smooth & Premium)
+   Applied consistently across all devices
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Smooth micro-transitions */
+.smooth-transition {
+  transition: var(--transition-smooth);
 }
