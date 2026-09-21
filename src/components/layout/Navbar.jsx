@@ -12,11 +12,10 @@ export default function Navbar() {
   const navLinks = [
     { label: "Home", href: "#home" },
     { label: "About Us", href: "#about" },
-    { label: "Office Spaces", href: "#space-categories" },
-    { label: "By Sector", href: "#office-spaces" },
-    { label: "Why Choose Us", href: "#why-choose-us" },
-    { label: "Our Process", href: "#featured-spaces" },
-    { label: "Contact Us", href: "#contact" },
+    { label: "Office Spaces", href: "#office-spaces" },
+    { label: "Our Services", href: "#featured-spaces" },
+    { label: "Why Noida", href: "#why-choose-us" },
+    { label: "Contact", href: "#contact" },
   ];
 
   // Smooth scroll click handler
@@ -86,7 +85,7 @@ export default function Navbar() {
           </a>
 
           {/* Center Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-4.5 xl:gap-6.5">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((item) => {
               const isActive = activeItem === item.label;
               return (
@@ -94,7 +93,7 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item)}
-                  className={`relative text-[13.5px] xl:text-[14.5px] whitespace-nowrap transition-colors py-2.5 cursor-pointer ${
+                  className={`relative text-[14.5px] transition-colors py-2.5 cursor-pointer ${
                     isActive
                       ? "font-bold text-[var(--text-heading)]"
                       : "font-medium text-[var(--text-body)] hover:text-[var(--text-heading)]"

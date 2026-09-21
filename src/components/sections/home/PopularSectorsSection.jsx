@@ -17,6 +17,7 @@ export default function PopularSectorsSection({
   sectors = defaultSectors,
   title = "Popular Sectors in Noida",
   subtitle = null,
+  onSelectSector,
 }) {
   const [sectionRef, isInView] = useInView({ threshold: 0.1, triggerOnce: true });
 
@@ -69,11 +70,17 @@ export default function PopularSectorsSection({
         {/* Sectors Grid (8 Cards: 4 columns on desktop, 2 on tablet/mobile) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-5.5 mt-8 sm:mt-10 lg:mt-12">
           {sectors.map((sector, idx) => (
-            <Link
+            <div
               key={sector.id || idx}
-              href={sector.href || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => onSelectSector && onSelectSector(sector)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelectSector && onSelectSector(sector);
+                }
+              }}
               aria-label={`Explore office spaces in ${sector.name}`}
               className={`group relative rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_4px_16px_-4px_rgba(10,35,60,0.12)] border border-[var(--border-card)] hover:border-[var(--gold)]/50 block cursor-pointer transition-all duration-400 ease-out hover:-translate-y-1.5 hover:shadow-[0_18px_36px_-8px_rgba(10,35,60,0.28)] ${isInView ? `animate-fade-up delay-${Math.min((idx + 1) * 75, 500)}` : "opacity-0"
                 }`}
@@ -110,7 +117,7 @@ export default function PopularSectorsSection({
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 
@@ -140,16 +147,17 @@ export default function PopularSectorsSection({
 
           {/* Banner Action Button */}
           <div className="relative z-10 shrink-0">
-            <Link
-              href="/contact"
-              className="btn btn-gold w-full sm:w-auto px-6 sm:px-7 py-3 rounded-xl inline-flex items-center justify-center gap-2 text-xs sm:text-[13.5px] font-semibold tracking-wide"
+            <button
+              type="button"
+              onClick={() => onSelectSector && onSelectSector({ name: "Any Preferred Location" })}
+              className="btn btn-gold w-full sm:w-auto px-6 sm:px-7 py-3 rounded-xl inline-flex items-center justify-center gap-2 text-xs sm:text-[13.5px] font-semibold tracking-wide cursor-pointer"
             >
               <span>Talk to Our Expert</span>
               <i
                 className="fa-solid fa-arrow-right text-[11px]"
                 aria-hidden="true"
               />
-            </Link>
+            </button>
           </div>
         </div>
       </Container>
